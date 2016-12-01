@@ -37,7 +37,7 @@ object Chapter03 {
 
   /**
     * Sets
-    * can be both immutable and not
+    * can be either immutable or mutable
     */
   // immutable
   var jetSet = Set("Boeing", "Airbus")
@@ -46,9 +46,20 @@ object Chapter03 {
 
   // mutable
   import scala.collection.mutable
-
   val movieSet = mutable.Set("Hitch", "Poltergeist")
   movieSet += "Shrek"
   println(movieSet)
 
+  /**
+    * Maps
+    * can be either immutable or mutable
+    */
+  // immutable
+  val romanNumeral = Map(1 -> "I", 2 -> "II", 3 -> "III", 4 -> "IV", 5 -> "V")
+
+  // mutable
+  val treasureMap = mutable.Map[Int, String]()
+  treasureMap += (1 -> "Go to island.")
+  treasureMap += (2 -> "Find big X on ground.")
+  treasureMap += (3 -> "Dig.")
 }
