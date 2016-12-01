@@ -1,10 +1,16 @@
 package com.mtraina.ps
 
 object Chapter03 {
-  // arrays
+  /**
+    * Arrays
+    * always mutable
+    */
   val numNames = Array("one", "two", "three")
 
-  // lists
+  /**
+    * Lists
+    * always immutable
+    */
   val oneTwo = List(1,2)
 
   // concatenation
@@ -21,4 +27,28 @@ object Chapter03 {
   val anotherOneTwoThree = 1 :: 2 :: 3 :: Nil
   // methods ending with ':' is invoked to the right operand, here the equivalent of the code above
   Nil.::(3).::(2).::(1)
+
+  /**
+    * Tuples
+    */
+  val pair = (99, "Luftballons")
+  println(pair._1)
+  println(pair._2)
+
+  /**
+    * Sets
+    * can be both immutable and not
+    */
+  // immutable
+  var jetSet = Set("Boeing", "Airbus")
+  jetSet += "Lear"
+  println(jetSet.contains("Cessna"))
+
+  // mutable
+  import scala.collection.mutable
+
+  val movieSet = mutable.Set("Hitch", "Poltergeist")
+  movieSet += "Shrek"
+  println(movieSet)
+
 }
