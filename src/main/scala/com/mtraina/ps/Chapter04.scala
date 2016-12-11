@@ -1,5 +1,7 @@
 package com.mtraina.ps
 
+import scala.collection.mutable
+
 object Chapter04 {
 
   /**
@@ -54,4 +56,30 @@ object Chapter04 {
     * Methods that are used only for they side effects are named "procedure"
     */
   // def add(b: Byte): Unit = sum += b
+
+  /**
+    * Singleton objects
+    * They are the way Scala uses instead of static memebers
+    * They must be defined in the same file where the class is defined
+    *
+    * This object is calculating the checksum of the characters in a string
+    * first it checks if the passed value has been previously calculated and it that case it gets the result from an internal cache
+    * otherwise, if the value wasn't present in the cache, it calculates the checksum, saves in the cache the result and returns it
+    */
+  object ChecksumAccumulator {
+    private val cache = mutable.Map.empty[String, Int]
+
+    def calculate(s: String): Int =
+      if(cache.contains(s))
+        cache(s)
+      else {
+        val acc = new RefactoredChecksumAccumulator
+        for(c <- s){
+          acc.add(c.toByte)
+        }
+        val cs = acc.checksum()
+        cache += (s -> cs)
+        cs
+      }
+  }
 }
