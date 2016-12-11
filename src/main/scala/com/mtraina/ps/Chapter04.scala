@@ -20,9 +20,38 @@ object Chapter04 {
     */
   class PrivateChecksumAccumulator {
     private var sum = 0
+
+    def add(b: Byte): Unit = {
+      sum += b
+    }
+    def checksum(): Int = {
+      return ~(sum & 0xFF) + 1
+    }
   }
   val acc2 = new PrivateChecksumAccumulator
   // invoke acc2.sum is now not possible
 
+  /**
+    * The parameters passed to a method are vals so not reassignable
+    */
+  def add(b: Byte): Unit = {
+    // b = 1 this is not possible
+  }
 
+  /**
+    * Refactored class removing the "return" keyword and the curly braces because the methods body is long only one line
+    * It's possible to remove also the returned type from the method and let the compiler infer for us, but for better
+    * readability is advised to keep it
+    */
+  class RefactoredChecksumAccumulator {
+    private var sum = 0
+    def add(b: Byte): Unit = sum += b
+    def checksum(): Int = ~(sum & 0xFF) + 1
+  }
+
+  /**
+    * This method returns Unit, so it's executed for its side effects.
+    * Methods that are used only for they side effects are named "procedure"
+    */
+  // def add(b: Byte): Unit = sum += b
 }
