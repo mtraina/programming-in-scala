@@ -82,4 +82,26 @@ object Chapter04 {
         cs
       }
   }
+
+  /**
+    * Scala application
+    * When an object defines a method named main that takes an array of strings as parameter and return Unit,
+    * it can be run as an application (convention)
+    */
+  import ChecksumAccumulator.calculate
+
+  object Summer {
+    def main(args: Array[String]): Unit ={
+      for(arg <- args)
+        println(arg  + ": " + calculate(arg))
+    }
+  }
+
+  /**
+    * Compile via command line
+    * scalac runs the Scala compiler
+    * fsc runs the daemon for compiling, faster for incremental builds
+    */
+  // scalac Chapter04.scala
+  // fsc Chapter04.scala
 }
