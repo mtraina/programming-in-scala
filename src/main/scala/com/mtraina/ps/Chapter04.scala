@@ -104,4 +104,14 @@ object Chapter04 {
     */
   // scalac Chapter04.scala
   // fsc Chapter04.scala
+
+  /**
+    * App trait
+    * Objects in Scala can extend traits
+    * Using the app trait we can write the body of the main method directly
+    */
+  object FallWinterSpring extends App {
+    for(season <- List("fall", "winter", "spring"))
+      println(season + ": " + calculate(season))
+  }
 }
