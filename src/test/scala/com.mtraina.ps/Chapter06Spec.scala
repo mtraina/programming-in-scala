@@ -1,7 +1,7 @@
 package com.mtraina.ps
 
 import org.scalatest.{FlatSpec, Matchers}
-import Chapter06.Rational5
+import Chapter06.{Rational5, Rational7}
 
 class Chapter06Spec extends FlatSpec with Matchers {
   "A rational" should "add another rational and return a new rational" in {
@@ -17,5 +17,10 @@ class Chapter06Spec extends FlatSpec with Matchers {
   it should "return the max between two rationals" in {
     new Rational5(1, 3) max new Rational5(2, 5) shouldBe new Rational5(2, 5)
     new Rational5(2, 3) max new Rational5(1, 7) shouldBe new Rational5(2, 3)
+  }
+
+  it should "return the normalized version of the rational" in {
+    new Rational7(2, 4).toString shouldBe "1/2"
+    new Rational7(6, 6).toString shouldBe "1/1"
   }
 }

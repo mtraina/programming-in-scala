@@ -64,4 +64,24 @@ object Chapter06 {
 
     def this(n: Int) = this(n, 1) // it calls the default constructor passing a defaulted denominator
   }
+
+  /**
+    * Private methods
+    */
+  class Rational7(n: Int, d: Int){
+    require(d != 0)
+
+    private val g = gcd(n.abs, d.abs)
+    val num: Int = n / g
+    val den: Int = d / g
+
+    def this(n: Int) = this(n, 1)
+
+    override def toString = num + "/" + den
+
+    def add(that: Rational5): Rational5 =
+      new Rational5(num * that.den + that.num * den, den * that.den)
+
+    private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
+  }
 }
