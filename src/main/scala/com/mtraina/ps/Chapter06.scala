@@ -53,4 +53,15 @@ object Chapter06 {
 
     def max(that: Rational5) = if(this.lessThan(that)) that else this
   }
+
+  /**
+    * Auxiliary constructor
+    */
+  class Rational6(n: Int, d: Int){
+    require(d != 0)
+    val num: Int = n
+    val den: Int = d
+
+    def this(n: Int) = this(n, 1) // it calls the default constructor passing a defaulted denominator
+  }
 }
