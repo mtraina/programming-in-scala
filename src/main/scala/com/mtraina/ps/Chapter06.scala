@@ -22,4 +22,27 @@ object Chapter06 {
   class Rational3(n: Int, d: Int){
     override def toString = n + "/" + d
   }
+
+  /**
+    * Adding precondition
+    */
+  class Rational4(n: Int, d: Int){
+    require(d != 0)
+    override def toString = n + "/" + d
+  }
+  new Rational4(1, 0) // not satisfying the precondition throws a java.lang.IllegalArgumentException
+
+  /**
+    * Creation of the method "add"
+    * it will return a new immutable object with the result of the sum
+    */
+  class Rational5(n: Int, d: Int){
+    require(d != 0)
+    val num: Int = n
+    val den: Int = d
+    override def toString = num + "/" + den
+    def add(that: Rational5): Rational5 = {
+      new Rational5(num * that.den + that.num * den, den * that.den)
+    }
+  }
 }
