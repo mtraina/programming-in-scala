@@ -107,4 +107,33 @@ object Chapter06 {
 
     private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
   }
+
+  /**
+    * Method overloading
+    */
+  class Rational9(n: Int, d: Int){
+    require(d != 0)
+
+    private val g = gcd(n.abs, d.abs)
+    val num: Int = n / g
+    val den: Int = d / g
+
+    def this(n: Int) = this(n, 1)
+
+    def +(that: Rational9): Rational9 = new Rational9(num * that.den + that.num * den, den * that.den)
+    def +(i: Int) = new Rational9(num + i * den, den)
+
+    def -(that: Rational9): Rational9 = new Rational9(num * that.den - that.num * den, den * that.den)
+    def -(i: Int) = new Rational9(num - i * den, den)
+
+    def *(that: Rational9): Rational9 = new Rational9(num * that.num, den * that.den)
+    def *(i: Int): Rational9 = new Rational9(num * i, den)
+
+    def /(that: Rational9): Rational9 = new Rational9(num * that.den, den * that.num)
+    def /(i: Int): Rational9 = new Rational9(num, den * i)
+
+    override def toString = num + "/" + den
+
+    private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
+  }
 }
