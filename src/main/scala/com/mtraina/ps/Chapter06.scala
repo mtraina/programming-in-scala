@@ -33,16 +33,24 @@ object Chapter06 {
   new Rational4(1, 0) // not satisfying the precondition throws a java.lang.IllegalArgumentException
 
   /**
-    * Creation of the method "add"
-    * it will return a new immutable object with the result of the sum
+    * Adding methods to the Rational class
     */
   class Rational5(n: Int, d: Int){
     require(d != 0)
     val num: Int = n
     val den: Int = d
     override def toString = num + "/" + den
+
+    /**
+      * Creation of the method "add"
+      * it will return a new immutable object with the result of the sum
+      */
     def add(that: Rational5): Rational5 = {
       new Rational5(num * that.den + that.num * den, den * that.den)
     }
+
+    def lessThan(that: Rational5) = this.num * that.den < that.num * this.den
+
+    def max(that: Rational5) = if(this.lessThan(that)) that else this
   }
 }
