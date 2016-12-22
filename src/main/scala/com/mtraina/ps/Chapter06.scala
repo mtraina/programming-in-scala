@@ -136,4 +136,9 @@ object Chapter06 {
 
     private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
   }
+
+  /**
+    * Implicit conversion
+    */
+  implicit def intToRational(x: Int) = new Rational9(x)
 }

@@ -1,7 +1,7 @@
 package com.mtraina.ps
 
 import org.scalatest.{FlatSpec, Matchers}
-import Chapter06.{Rational5, Rational7, Rational8}
+import Chapter06.{Rational5, Rational7, Rational8, Rational9}
 
 class Chapter06Spec extends FlatSpec with Matchers {
   "A rational" should "add another rational and return a new rational" in {
@@ -30,5 +30,12 @@ class Chapter06Spec extends FlatSpec with Matchers {
   it should "multiply another rational and return a new rational" in {
     (new Rational8(1, 2) * new Rational8(1, 2)).toString shouldBe "1/4"
     (new Rational8(3, 2) * new Rational8(1, 4)).toString shouldBe "3/8"
+  }
+
+  it should "multiply an int to a rational" in {
+    implicit def intToRational(x: Int) = new Rational9(x)
+
+    (2 * new Rational9(1, 2)).toString shouldBe "1/1"
+    (3 * new Rational9(2, 5)).toString shouldBe "6/5"
   }
 }
