@@ -79,8 +79,31 @@ object Chapter06 {
 
     override def toString = num + "/" + den
 
-    def add(that: Rational5): Rational5 =
-      new Rational5(num * that.den + that.num * den, den * that.den)
+    def add(that: Rational7): Rational7 =
+      new Rational7(num * that.den + that.num * den, den * that.den)
+
+    private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
+  }
+
+  /**
+    * Defining operators
+    */
+  class Rational8(n: Int, d: Int){
+    require(d != 0)
+
+    private val g = gcd(n.abs, d.abs)
+    val num: Int = n / g
+    val den: Int = d / g
+
+    def this(n: Int) = this(n, 1)
+
+    override def toString = num + "/" + den
+
+    def +(that: Rational8): Rational8 =
+      new Rational8(num * that.den + that.num * den, den * that.den)
+
+    def *(that: Rational8): Rational8 =
+      new Rational8(num * that.num, den * that.den)
 
     private def gcd(a: Int, b: Int): Int = if(b == 0) a else gcd(b, a % b)
   }
