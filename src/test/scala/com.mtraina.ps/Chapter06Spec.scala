@@ -33,6 +33,7 @@ class Chapter06Spec extends FlatSpec with Matchers {
   }
 
   it should "multiply an int to a rational" in {
+    // the implicit conversion has to be in scope, inside the class Rational won't be sufficient
     implicit def intToRational(x: Int) = new Rational9(x)
 
     (2 * new Rational9(1, 2)).toString shouldBe "1/1"
