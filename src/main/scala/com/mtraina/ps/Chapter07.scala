@@ -24,4 +24,18 @@ object Chapter07 {
     if i % 2 == 0
     if i > 2
   ) yield i        // Vector(4, 6)
+
+  /**
+    * Match expressions
+    * Similar to the Java switch it doesn't use the keyword "break"
+    * The default value is defined using the symbol "_"
+    */
+  val friend = "salt" match {
+    case "salt" => "pepper"
+    case "eggs" => "bacon"
+    case _ => "huh?"
+  }
+  println(friend) // prints "pepper"
 }
+
+
