@@ -58,4 +58,18 @@ object Chapter08 {
   speed(100, 10)                    // if the name of the parameters is specified, they are assigned in the oder they are defined
   speed(distance = 100, time = 10)  // equivalent to the case listed above
   speed(time = 10, distance = 100)  // in this case is possible to change the order of the parameters and acheive the ame result
+
+  /**
+    * Default parameter values
+    * When not specified, the parameter is defaulted
+    */
+  def printTime(out: java.io.PrintStream = Console.out) = out.println("time = " + System.currentTimeMillis())
+
+  // case where we combine both default and named parameters
+  def printTime2(out: java.io.PrintStream = Console.out, divisor: Int = 1) = out.println("time = " + System.currentTimeMillis() / divisor)
+  // all the following calls are valid
+  printTime2()
+  printTime2(divisor = 2)
+  printTime2(out = Console.err)
+  printTime2(out = Console.err, divisor = 2)
 }
