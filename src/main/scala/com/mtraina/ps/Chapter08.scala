@@ -72,4 +72,44 @@ object Chapter08 {
   printTime2(divisor = 2)
   printTime2(out = Console.err)
   printTime2(out = Console.err, divisor = 2)
+
+  /**
+    * Tail recursion
+    * A tail recursive function is a function that call itself as last operation
+    * In a case of tail recursive function, the Scala compiler can optimize the recursive code into a loop
+    * and avoiding to create a new frame for each iteration
+    *
+    * The following example shows a NON-tail-recursive function
+    * it is not a tail recursive function because the increment operation is actually the last
+    */
+  def boom(x: Int): Int = {
+    if(x == 0) throw new Exception("boom!")
+    else boom(x - 1) + 1
+  }
+  boom(3)
+  // when executed, we'll receive the output listed below, where is clear that
+  // the function created 4 frames for each iteration before throwing the exception
+  //
+  //  java.lang.Exception: boom!
+  //    at .boom(<console>:12)
+  //    at .boom(<console>:13)
+  //    at .boom(<console>:13)
+  //    at .boom(<console>:13)
+  //    ... 32 elided
+
+  /**
+    * the following function is actual tail-recursive because the call to itself is in fact the last statement
+    */
+  def bang(x: Int): Int = {
+    if(x == 0) throw new Exception("bang!")
+    else bang(x -1)
+  }
+  bang(3)
+  // when this function is executed, we'll see a shorter stacktrace,
+  // actually showing only one frame before the exception is thrown
+  // the Scala compiler applied the optimization
+  //
+  //  java.lang.Exception: bang!
+  //    at .bang(<console>:12)
+  //    ... 32 elided
 }
