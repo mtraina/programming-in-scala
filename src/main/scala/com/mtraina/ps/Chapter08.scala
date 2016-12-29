@@ -44,4 +44,18 @@ object Chapter08 {
   val inc9999 = makeIncreaser(9999)   // binds the value 9999 as more
   inc1(10)      // 11
   inc9999(10)   // 1009
+
+  /**
+    * Repeated parameters
+    * They are defined with the asterisk sign
+    */
+  def echo(args: String*) = for(arg <- args) println(arg)
+
+  /**
+    * Named arguments
+    */
+  def speed(distance: Float, time: Float): Float = distance / time
+  speed(100, 10)                    // if the name of the parameters is specified, they are assigned in the oder they are defined
+  speed(distance = 100, time = 10)  // equivalent to the case listed above
+  speed(time = 10, distance = 100)  // in this case is possible to change the order of the parameters and acheive the ame result
 }
