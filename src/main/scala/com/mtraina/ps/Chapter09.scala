@@ -57,4 +57,19 @@ object Chapter09 {
     def fileContaining(query: String) = filesMatching(_.contains(query))
     def fileRegex(query: String) = filesMatching(_.matches(query))
   }
+
+  /**
+    * Simplify client code using high order functions
+    */
+  def containsNeg(nums: List[Int]): Boolean = {
+    var exists = false
+    for(num <- nums)
+      if(num < 0)
+        exists = true
+    exists
+  }
+  containsNeg(List(1,2,3,-4))   // true
+
+  // the following method give us the same result of the one above, in a more concise way
+  def containsNegRefactored(nums: List[Int]) = nums.exists(_ < 0)
 }
