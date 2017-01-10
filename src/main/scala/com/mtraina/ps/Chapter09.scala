@@ -72,4 +72,16 @@ object Chapter09 {
 
   // the following method give us the same result of the one above, in a more concise way
   def containsNegRefactored(nums: List[Int]) = nums.exists(_ < 0)
+
+  /**
+    * Currying
+    */
+  // in this example we show a typical function where we pass the two arguments and the body of the function sums them
+  def plainOldSum(x: Int, y: Int) = x + y
+  plainOldSum(1, 2) // 3
+
+  // in the example shown below, instead, we show create a function that takes an integer as parameter and returns
+  // a function. Passing the second parameter to the last function yields the sum
+  def curriedSum(x: Int)(y: Int) = x + y
+  curriedSum(1)(2)  // 3
 }
