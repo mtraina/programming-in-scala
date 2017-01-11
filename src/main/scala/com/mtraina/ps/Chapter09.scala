@@ -84,4 +84,10 @@ object Chapter09 {
   // a function. Passing the second parameter to the last function yields the sum
   def curriedSum(x: Int)(y: Int) = x + y
   curriedSum(1)(2)  // 3
+
+  /**
+    * Writing new control structures
+    */
+  def twice(op: Double => Double, x: Double) = op(op(x))
+  twice(_ + 1, 5)   // 7 (5 + 1 + 1)
 }
