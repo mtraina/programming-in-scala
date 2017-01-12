@@ -1,5 +1,8 @@
 package com.mtraina.ps
 
+import java.io.{File, PrintWriter}
+import java.util.Date
+
 object Chapter09 {
 
   /**
@@ -90,4 +93,35 @@ object Chapter09 {
     */
   def twice(op: Double => Double, x: Double) = op(op(x))
   twice(_ + 1, 5)   // 7 (5 + 1 + 1)
+
+  // in any method invocation in which we are passing in exactly one argument, we can use curly braces in stead of parentheses
+  println("Hello world!")
+  println { "Hello world!" }
+
+  // the advantage of using curly braces is that enables client programmers to write function literals in between
+  def withPrintWriter(file: File, op: PrintWriter => Unit) ={
+    val writer = new PrintWriter(file)
+    try {
+      op(writer)
+    } finally {
+      writer.close()
+    }
+  }
+  withPrintWriter(new File("a.txt"),
+                  writer => writer.println(new Date))
+
+  // the same function as above refactored using the loan pattern
+  def withPrintWriterRefactored(file: File)(op: PrintWriter => Unit) ={
+    val writer = new PrintWriter(file)
+    try {
+      op(writer)
+    } finally {
+      writer.close()
+    }
+  }
+
+  // refactoring the function in this way let us use the curly braces for passing the last parameter
+  withPrintWriterRefactored(new File("a.txt")){ writer =>
+    writer.println(new Date)
+  }
 }
