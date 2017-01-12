@@ -2,6 +2,7 @@ package com.mtraina.ps
 
 import java.io.{File, PrintWriter}
 import java.util.Date
+import java.util.function.Predicate
 
 object Chapter09 {
 
@@ -124,4 +125,36 @@ object Chapter09 {
   withPrintWriterRefactored(new File("a.txt")){ writer =>
     writer.println(new Date)
   }
+
+  /**
+    * By-name parameters
+    */
+  var assertionsEnabled = true
+
+  // in this case we pass a function, it won't be evaluated if assertionsEnabled is false
+  def myAssert(predicate: () => Boolean) =
+    if(assertionsEnabled && !predicate())
+      throw new AssertionError
+
+  // using this function is a bit awkward
+  myAssert(() => 5 > 3)
+
+  // the next function is equivalent to the first
+  def byNameAssert(predicate: => Boolean) =
+    if(assertionsEnabled && !predicate)
+      throw new AssertionError
+
+  // calling it looks more natural
+  byNameAssert(5 > 3)
+
+  // this last case is similar but the parameter "predicate" will be evaluate before the call to the boolAssert method
+  def boolAssert(predicate: Boolean) =
+    if(assertionsEnabled && !predicate)
+      throw new AssertionError
+
+  val x = 5
+  assertionsEnabled = false
+  boolAssert(x / 0 == 0)      // this will produce an arithmetic exception because it will be evaluated before entering the method
+
+  byNameAssert(x / 0 == 0)    // it won't throw any exception because with assertionsEnable to false, the predicate won't be evaluated
 }
