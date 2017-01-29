@@ -54,4 +54,23 @@ object Chapter10 {
     override def width = s.length
     override def height = 1
   }
+
+  /**
+    * Polymorphism and dynamic binding
+    */
+  class UniformElement(ch: Char, override val width: Int, override val height: Int) extends Element {
+    private val line = ch.toString * width
+    def contents = Array.fill(height)(line)
+  }
+
+  /**
+    * Concatenate arrays
+    */
+  Array(1, 2 ,3) ++ Array(4, 5, 6)  // Array(1, 2, 3, 4, 5, 6)
+
+  /**
+    * Zip: it combines the elements on the first array with the elements of the second in tuple.
+    * If one of the two arrays is shorter, zip will drop the remaining elements
+    */
+  Array(1, 2, 3) zip Array("a", "b") // Array((1, "a"), (2, "b"))
 }
