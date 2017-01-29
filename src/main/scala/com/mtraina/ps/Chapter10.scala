@@ -25,5 +25,15 @@ object Chapter10 {
   }
 
   val ar = new ArrayElement(Array("hello", "world"))
-  ar.width
+  ar.width      // prints "5"
+
+  /**
+    * Override a method with a field
+    */
+  class ArrayElement2(conts: Array[String]) extends Element {
+    val contents: Array[String] = conts
+  }
+
+  val ar2 = new ArrayElement2(Array("hello"))
+  ar2.width     // prints "5"
 }
