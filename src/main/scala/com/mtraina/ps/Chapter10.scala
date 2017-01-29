@@ -46,4 +46,12 @@ object Chapter10 {
 
   val ar3 = new ArrayElement3(Array("world"))
   ar3.width
+
+  /**
+    * Invoking superclass constructors
+    */
+  class LineElement(s: String) extends ArrayElement(Array(s)){
+    override def width = s.length
+    override def height = 1
+  }
 }
