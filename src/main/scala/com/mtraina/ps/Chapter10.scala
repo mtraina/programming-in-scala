@@ -36,4 +36,14 @@ object Chapter10 {
 
   val ar2 = new ArrayElement2(Array("hello"))
   ar2.width     // prints "5"
+
+  /**
+    * Override a method with a filed from the constructor
+    * the result of this example is equivalent to the previous one, but even shorter
+    * the name of the parameter passed to the constructor has to be the same as the value we want to override
+    */
+  class ArrayElement3(val contents: Array[String]) extends Element
+
+  val ar3 = new ArrayElement3(Array("world"))
+  ar3.width
 }
