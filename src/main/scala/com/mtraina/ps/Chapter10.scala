@@ -7,7 +7,23 @@ object Chapter10 {
     */
   abstract class Element {
     def contents: Array[String]
+    def height: Int = contents.length
+    def width: Int = if(height == 0) 0 else contents(0).length
   }
 
+  /**
+    * Conventions betwenn parameterless and empty-paren methods
+    */
+  "hello".length  // this method is parameterless because it doesn't make side effects
+  println()       // this method has side effects
 
+  /**
+    * Extending classes
+    */
+  class ArrayElement(conts: Array[String]) extends Element {
+    override def contents: Array[String] = conts
+  }
+
+  val ar = new ArrayElement(Array("hello", "world"))
+  ar.width
 }
