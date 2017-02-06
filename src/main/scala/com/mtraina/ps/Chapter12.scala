@@ -110,4 +110,12 @@ object Chapter12 {
   incrementThenFilterQueue.get()        // 0 (-1 + 1 than x >= 0)
   incrementThenFilterQueue.get()        // 1 (0 + 1 than x >= 0)
   incrementThenFilterQueue.get()        // 2 (1 + 1 than x >= 0)
+
+  /**
+    * Rules to decide between Trait or (abstract) Class
+    */
+  // if the behaviour won't be reused, then create a concrete class
+  // if it might be reused in multiple unrelated classes, then make a trait
+  // if it will be inherited from it in Java code, then make an abstract class
+  // if you don't know, considered the above, then make a trait
 }
