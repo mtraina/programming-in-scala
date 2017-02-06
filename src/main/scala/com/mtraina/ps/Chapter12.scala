@@ -98,7 +98,16 @@ object Chapter12 {
   filteredThenIncrementedQueue.put(-1)
   filteredThenIncrementedQueue.put(0)
   filteredThenIncrementedQueue.put(1)
-  filteredThenIncrementedQueue.get()    // 1 (0 + 1)
-  filteredThenIncrementedQueue.get()    // 2 (1 + 1)
 
+  filteredThenIncrementedQueue.get()    // 1 (x >= 0 then x + 1 = 0 + 1)
+  filteredThenIncrementedQueue.get()    // 2 (x >= 0 then x + 1 = 1 + 1)
+
+  val incrementThenFilterQueue = new BasicIntQueue with Filtering with Incrementing
+  incrementThenFilterQueue.put(-1)
+  incrementThenFilterQueue.put(0)
+  incrementThenFilterQueue.put(1)
+
+  incrementThenFilterQueue.get()        // 0 (-1 + 1 than x >= 0)
+  incrementThenFilterQueue.get()        // 1 (0 + 1 than x >= 0)
+  incrementThenFilterQueue.get()        // 2 (1 + 1 than x >= 0)
 }
