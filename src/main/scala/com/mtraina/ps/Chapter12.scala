@@ -57,4 +57,30 @@ object Chapter12 {
 
   half < third // Boolean = false
   half > third // Boolean = true
+
+  /**
+    * Traits as stackable modifications
+    */
+  abstract class IntQueue {
+    def get(): Int
+    def put(x: Int)
+  }
+
+  import scala.collection.mutable.ArrayBuffer
+
+  class BasicIntQueue extends IntQueue {
+    private val buf = new ArrayBuffer[Int]
+    override def get() = buf.remove(0)
+    override def put(x: Int) = buf += x
+  }
+
+  trait Doubling extends IntQueue {
+    abstract override def put(x: Int) = super.put(x * 2)
+  }
+
+  class MyQueue extends BasicIntQueue with Doubling
+
+  val q = new MyQueue
+  q.put(10)   // puts 10 * 2 because of the trait doubling
+  q.get       // 20
 }
