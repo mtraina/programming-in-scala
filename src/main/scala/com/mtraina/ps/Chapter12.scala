@@ -83,4 +83,22 @@ object Chapter12 {
   val q = new MyQueue
   q.put(10)   // puts 10 * 2 because of the trait doubling
   q.get       // 20
+
+  trait Incrementing extends IntQueue {
+    abstract override def put(x: Int) = super.put(x + 1)
+  }
+  trait Filtering extends IntQueue {
+    abstract override def put(x: Int) = if(x >= 0) super.put(x)
+  }
+
+  // class that extends two traits that define the same method
+  // to avoid the diamond problem the implementation most at the right hand side takes effect first
+  // than every time "super" is called, the selection of the implementation will be to nearer on the left ans o on
+  val filteredThenIncrementedQueue = new BasicIntQueue with Incrementing with Filtering
+  filteredThenIncrementedQueue.put(-1)
+  filteredThenIncrementedQueue.put(0)
+  filteredThenIncrementedQueue.put(1)
+  filteredThenIncrementedQueue.get()    // 1 (0 + 1)
+  filteredThenIncrementedQueue.get()    // 2 (1 + 1)
+
 }
