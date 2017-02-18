@@ -15,4 +15,11 @@ object Chapter13 {
 
   val nf: NumberFormatter = new NumberFormatter
 
+  /**
+    * By default the access modifier for Scala is public.
+    * Protected and private are also allowed modifiers and they have to be explicitly used
+    */
+  val length = 10 // public
+  protected val height = 20 // protected
+  private val weight = 30   // private
 }
