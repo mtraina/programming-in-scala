@@ -88,4 +88,9 @@ object Chapter15 {
   //      requester ! checksum
   //  }
 
+  /**
+    * Patters in for expressions
+    */
+  for((country, city) <- capitals)
+    println("The capital of " + country + " is " + city)
 }
