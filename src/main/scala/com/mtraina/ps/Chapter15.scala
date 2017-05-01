@@ -48,4 +48,24 @@ object Chapter15 {
   case class Number2(num: Double) extends Expr2
   case class UnOp2(operator: String, arg: Expr2) extends Expr2
   case class BinOp2(operator: String, left: Expr2, right: Expr2) extends Expr2
+
+  /**
+    * Option type
+    * it wraps a non present value in a sort of box, it can have 2 results:
+    * a some of the value we are expecting or none
+    */
+  val capitals = Map("France" -> "Paris", "Japan" -> "Tokio")
+  capitals get "France" // res0: Option[String] = Some(Paris)
+  capitals get "UK"     // res1: Option[String] = None
+
+  /**
+    * Pattern matching on Option
+    */
+  def show(x: Option[String]) = x match {
+    case Some(s) => s
+    case None => "?"
+  }
+  show(capitals get "Japan")  // res2: String = Tokio
+  show(capitals get "USA")    // res3: String = ?
+
 }
