@@ -68,4 +68,24 @@ object Chapter15 {
   show(capitals get "Japan")  // res2: String = Tokio
   show(capitals get "USA")    // res3: String = ?
 
+  /**
+    * Patterns on variable definition (deconstruction)
+    */
+  val myTuple = (123, "abc")  // myTuple: (Int, String) = (123,abc)
+  val (num, str) = myTuple    // num: Int = 123 str: String = abc
+
+  /**
+    * Case sequences as partial functions
+    * A case sequence is a function literal
+    * Here an example of its usage in Akka
+    */
+  //  var sum = 0
+  //
+  //  def receive = {
+  //    case Data(byte) => sum += byte
+  //    case GetChecksum(requester) =>
+  //      val checksum = ~(sum & 0xFF) + 1
+  //      requester ! checksum
+  //  }
+
 }
