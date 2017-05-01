@@ -38,4 +38,14 @@ object Chapter15 {
     case BinOp("*", e, Number(1)) => e  // multiply by one
     case _ => expr
   }
+
+  /**
+    * Sealed classes are useful for defining all the possible cases in the same file
+    * and avoid the definition of a new case somewhere else in the code
+    */
+  sealed abstract class Expr2
+  case class Var2(name: String) extends Expr2
+  case class Number2(num: Double) extends Expr2
+  case class UnOp2(operator: String, arg: Expr2) extends Expr2
+  case class BinOp2(operator: String, left: Expr2, right: Expr2) extends Expr2
 }
